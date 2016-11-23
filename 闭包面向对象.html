@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+		//基础闭包代码
+			var extent = (function(){
+				var value = 0;
+				return {
+					call:function(){
+						value++;
+						console.log(value);
+					}
+				}
+			})();
+			extent.call();
+			extent.call();
+		//面向对象闭包代码
+			var extent1 = {
+				value:10,
+				call:function(){
+					this.value++;
+					console.log(this.value);
+				}
+			}
+			extent1.call();
+			extent1.call();
+			
+		//or 
+			var Extent2 = function(){
+				this.value = 20;
+			};
+			
+			Extent2.prototype.call = function(){
+				this.value++;
+				console.log(this.value);
+			};
+			
+		var extent2 = new Extent2();
+		extent2.call();
+		extent2.call();
+		extent2.call();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

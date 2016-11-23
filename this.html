@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			//1.当函数作为对象的方法被调用时，this指向该对象
+			var obj = {
+				name:'zym',
+				getName:function(){
+					console.log(this.name);
+					console.log(this === obj);
+				}
+			}
+			obj.getName();
+			//2.作为普通函数调用 this总是指向全局对象 在浏览器中全局对象是window对象
+			window.name = '窗口';
+			var getName = function(){
+				return this.name;
+			}
+			console.log(getName());
+			//or
+			window.name = '窗口1';
+			var myObject = {
+				name:"方法名",
+				getName:function(){
+					return this.name;
+				}
+			}
+			var myGetName = myObject.getName;
+			console.log(myGetName());
+			
+			//3.构造器调用
+			var MyClass = function(){
+				this.name = 'sven';
+			};
+			
+			var obj = new MyClass();
+			obj.name = 'haah';
+			console.log(obj.name);
+			//如果构造器显示的返回了一个object类型的对象，那么此次运算结果最终会返回这个对象
+			var MyClass1 = function(){
+				this.name = 'seven';
+				return {
+					name: 'bob',
+					age:'18'
+				}
+			};
+			var obj = new MyClass1();
+			console.log(obj.name);
+			//如果构造器不显式的返回任何数据，或返回一个非对象类型数据（{key,value}，[]），就不会造成上述问题
+			var MyClass2 = function(){
+				this.name = 'seven';
+				return 'hahahh';
+			}
+			var obj = new MyClass2();
+			console.log(obj.name);
+			
+			//4.Function.prototype.call 或 Function.prototype.apply可以动态的改变传入函数的this
+			//跟普通的函数调用相比，用 Function.prototype.call 或 Function.prototype.apply可以动态的改变传入函数的this；
+			var obj1 = {
+				name : 'kekeke',
+				getName : function(){
+					return this.name;
+				}
+			};
+			
+			var obj2 = {
+				name : 'heiheihei'
+			};
+			console.log(obj1.getName());
+			console.log(obj1.getName.call(obj2));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

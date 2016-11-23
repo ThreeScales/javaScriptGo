@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			var myObject = (function(){
+				var __name = 'svem';
+				return {
+					getName:function(){
+						return __name;
+					}
+				};
+			})();
+			console.log(myObject.__name);//undefined
+			console.log(myObject.getName());//svem;
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
